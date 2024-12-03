@@ -3,13 +3,13 @@ HOSTED_ZONE_ID=hostedzoneid
 TTL=60
 AWS_PROFILE=route53-dynamic-dns
 
-ROUTE_53_IP=$(aws route53 list-resource-record-sets --hosted-zone-id $HOSTED_ZONE_ID --query "ResourceRecordSets[?Type == 'A'].ResourceRecords[0].Value" --output text)
+ROUTE_53_IP=$(aws route53 list-resource-record-sets --hosted-zone-id $HOSTED_ZONE_ID --query "ResourceRecordSets[?Type == 'A'].ResourceRecords[0].Value" --output text --profile "$AWS_PROFILE")
 echo "IP address on route53 is $ROUTE_53_IP"
 
 IP_ADDRESS=$(curl -s ipinfo.io/ip)
 echo "IP address is $IP_ADDRESS"
 
-if [ "$ROUTE_53_IP" != "$IP_ADDRESS" ]; then
+if [ "$ROUTE_53_IP" = "$IP_ADDRESS" ]; then
     echo "IP is up to date"
     exit 1
 fi

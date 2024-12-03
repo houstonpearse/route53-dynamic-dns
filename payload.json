@@ -1,0 +1,17 @@
+{
+    "Changes": [
+        {
+            "Action": "UPSERT",
+            "ResourceRecordSet": {
+                "Name": "$domain_name",
+                "Type": "A",
+                "TTL": $ttl,
+                "ResourceRecords": [
+                    {
+                        "Value": "$ip_address"
+                    }
+                ]
+            }
+        }
+    ]
+}

@@ -21,5 +21,5 @@ A script for automating the update of Route53
 ### install cronjob
 - run `chmod +x update-ip.sh`
 - run `crontab -e` to edit the crontab.
-- add `*/10 * * * * cd /path/to/route-53-dynamic-dns & ./update-ip.sh` to the crontab
+- add `*/10 * * * * cd /path/to/route53-dynamic-dns && /usr/bin/bash ./update-ip.sh >> /path/to/route53-dynamic-dns/log.txt 2>&1` to the crontab
 
